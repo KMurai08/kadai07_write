@@ -27,15 +27,13 @@ $output = "";
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 foreach ($result as $record) {
   
-    // echo "<a href='detail.php?id=";
-    //     echo $record['id'];
-    //     echo "'>";
-    //     echo $record['titleLong']."<br/>";
-  $output .= "<a href='detail.php?id=";
-  $output .= $record['id'];
-  $output .= "'>";
-  $output .= $record['titleLong'];
-  $output .= "</a><br/>";
+
+  $output .="
+       <div>
+       <a href='detail.php?id={$record["id"]}'>{$record["titleLong"]}</a>
+       </div>
+
+  ";
   
 }
 

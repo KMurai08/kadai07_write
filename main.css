@@ -100,10 +100,23 @@ textarea{
    padding: 10px;
 }
 
+
+
 .toTop{
    width: 90%;
    text-align: end;
 }
-
+.edit_button, .delete_button {
+width: 60px;
+padding: 5px 10px;
+background-color: #ed9e5e;
+color: #eafffd;
+border-radius: 4px;
+margin: 20px 10px;
+text-decoration: none;
+}
+.edit_button{
+   cursor:pointer;
+}
 
 
