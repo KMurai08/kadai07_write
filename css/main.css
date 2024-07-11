@@ -1,0 +1,172 @@
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.wrapper {
+  min-height: 500px;
+  position: relative;
+}
+
+/* -----------------------------
+メインページ（input.php)のレイアウト
+-------------------------------- */
+
+.menu {
+  display: flex;
+  height: 60px;
+  background-color: #6a8eae;
+  justify-content: end;
+  padding: 20px;
+}
+footer {
+  width: 100%;
+  height: 60px;
+  padding-top: 20px;
+  background-color: #6a8eae;
+  display: flex;
+  justify-content: center;
+  color: #eafffd;
+  position: absolute;
+  bottom: 0;
+}
+.common_button {
+  width: 100px;
+  height: 35px;
+  background-color: #d5cad6;
+  border-color: #294055;
+  border-radius: 2px;
+  margin-left: 15px;
+}
+
+.menu_user {
+   margin: 30px;
+  color: white;
+  font-weight: bold;
+  text-align: left;
+}
+.linkList {
+  width: screen;
+  height: 600px;
+  overflow: scroll;
+  padding: 30px;
+}
+
+.modal-wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 100;
+  display: none;
+}
+
+.modal {
+  position: absolute;
+  top: 20%;
+  left: 30%;
+  background-color: #eafffd;
+  padding: 20px 0 40px;
+  border-radius: 10px;
+  width: 700px;
+  height: auto;
+  text-align: center;
+}
+
+input {
+  width: 80%;
+  margin: 10px;
+}
+textarea {
+  width: 80%;
+  height: 200px;
+}
+#close {
+  margin-top: 5px;
+}
+
+#list {
+  list-style: none;
+}
+
+/* ------------
+詳細ページcss
+------------ */
+
+.detailMain {
+  width: 1180px;
+  margin: 0 auto;
+}
+
+.detailTitle {
+  font-size: xx-large;
+  background-color: #a9b9f6;
+  width: 90%;
+  padding: 10px 20px;
+  margin: 20px 0 10px 20px;
+}
+
+.detailText_box {
+  background-color: #a9b9f6;
+  width: 90%;
+  min-height: 200px;
+  padding: 20px;
+  margin:10px 0 20px 20px;
+}
+
+.detailBookInfo {
+  font-size: small;
+  padding: 10px;
+  margin: 20px;
+}
+
+.toTop {
+  width: 90%;
+  text-align: end;
+}
+.edit_button,
+.delete_button {
+  width: 60px;
+  padding: 5px 10px;
+  background-color: #ed9e5e;
+  color: #eafffd;
+  border-radius: 4px;
+  text-decoration: none;
+}
+.edit_button {
+  cursor: pointer;
+    margin: 20px 10px 0 20px;
+}
+
+
+/* ログイン画面・新規登録画面CSS */
+
+.common_header {
+  height: 50px;
+  padding: 5px 0px;
+  background-color: #6a8eae;
+  text-align: center;
+  color: white;
+}
+.common_form_wrapper {
+  width: 60%;
+  margin: 0 auto;
+  padding: 100px 0px;
+  display: flex;
+  justify-content: center;
+}
+
+.form_button {
+  margin-top: 30px;
+  margin-left: 75px;
+}
+.form_link{
+  text-align: center;
+   padding-top: 50px;
+}

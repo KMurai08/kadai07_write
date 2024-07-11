@@ -1,4 +1,20 @@
 <?php
+session_start();
+include("functions.php");
+
+  if(
+  !isset($_SESSION["session_id"])||
+  $_SESSION["session_id"] !== session_id()
+){
+  $_SESSION["username"] = "GUEST";
+
+}else{
+  // セッションidの再生成
+  session_regenerate_id(true);
+  $_SESSION["session_id"] = session_id();
+}
+
+
 // DB接続
 $dbn ='mysql:dbname=writes_proto;charset=utf8mb4;port=3306;host=localhost';
 $user = 'root';
@@ -44,14 +60,20 @@ foreach ($result as $record) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="main.css">
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<link rel="stylesheet" href="./css/main.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
   <title>Document</title>
 </head>
 <body>
 <div class="menu">
-  <h1 class="logo">MENU</h1>
-  <button id="showLong">書く</button>
+  <div>  <span class="menu_user">USER:<?php echo $_SESSION['username'] ?></span></div>
+
+<div>
+  <button class="common_button" id="showLong">書く</button></div>
+  <div>
+      <button class="common_button logout_button" onclick="location.href='logout.php'">ログアウト</button>
+</div>
+
 </div>
   <div class="modal-wrapper">
     <div class="modal">      
@@ -86,12 +108,23 @@ foreach ($result as $record) {
     <p>ー２０２４ー</p>
   </footer>
 <script>
+  // ゲストユーザー時は書くことができない処理
+const userName = <?=json_encode($_SESSION["username"])?>;
+if(userName==="GUEST"){
+      $('#showLong').on('click', function () {
+        $(this).prop('disabled', true);
+      });
+}else{
+// ボタンを押した時に記入ボタンを表示
     $('#showLong').click(function() {
         $(".modal-wrapper").show();
     });
     $('#close').click(function() {
         $(".modal-wrapper").hide();
     })
+};
+
+
 
 
 </script>

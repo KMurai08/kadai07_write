@@ -1,38 +1,9 @@
 <?php
-
-
-
-// // DB接続
-// $dbn ='mysql:dbname=writes_proto;charset=utf8mb4;port=3306;host=localhost';
-// $user = 'root';
-// $pwd = '';
-
-// // DB接続
-// try {
-//   $pdo = new PDO($dbn, $user, $pwd);
-// } catch (PDOException $e) {
-//   echo json_encode(["db error" => "{$e->getMessage()}"]);
-//   exit();
-// }
-
-// // SQL実行
-// $sql = 'SELECT * FROM writeLong';
-// $stmt = $pdo->prepare($sql);
-
-
-// try {
-//   $status = $stmt->execute();
-// } catch (PDOException $e) {
-//   echo json_encode(["sql error" => "{$e->getMessage()}"]);
-//   exit();
-// }
-
-// $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-
-// $id = $_GET['id'];
+session_start();
+// check_session_id();
 
 include("functions.php");
+check_session_id();
 
 // id受け取り
 $id = $_GET['id'];
@@ -64,8 +35,8 @@ $record = $stmt->fetch(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<link rel="stylesheet" href="main.css">
-    <title>詳細ページ</title>
+<link rel="stylesheet" href="./css/main.css">
+ <title>詳細ページ</title>
 </head>
 <body>
     
@@ -88,7 +59,8 @@ $record = $stmt->fetch(PDO::FETCH_ASSOC);
 
 </div>
 <div>
-  <a class="edit_button">編集</a>/
+  <a class="edit_button">編集</a>
+  <span>/</span>
 <a class="delete_button" href="delete.php?id=<?=$id?>">削除</a>
 </div>
 
