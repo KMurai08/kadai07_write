@@ -56,6 +56,7 @@ footer {
   padding: 30px;
 }
 
+
 .modal-wrapper {
   position: fixed;
   top: 0;
@@ -169,4 +170,35 @@ textarea {
 .form_link{
   text-align: center;
    padding-top: 50px;
+}
+
+.obi_box{
+    position: relative;
+width: 400px;
+height: 100px;
+margin: 10px;
+
+}
+.obi_box img{
+  object-fit: cover;
+width: 100%;
+height: 100%;
+
+}
+.obi_box_text{
+  position: absolute;
+  top:20%;
+  left:10%;
+  font-size: 30px;
+  font-weight: bolder;
+  color: whitesmoke;
+}
+.like_icon{
+    position: absolute;
+  bottom:5%;
+  right:5%;
+  font-size: 20px;
+  font-weight: bold;
+   text-decoration: none;
+   color: whitesmoke;
 }

@@ -2,6 +2,7 @@
 session_start();
 include("functions.php");
 
+
   if(
   !isset($_SESSION["session_id"])||
   $_SESSION["session_id"] !== session_id()
@@ -28,9 +29,14 @@ try {
   exit();
 }
 
+
 // SQL作成&実行
-$sql = "SELECT * FROM writeLong ORDER BY createdLong ASC";
+$sql = "SELECT * FROM writeLong ORDER BY createdLong DESC";
+// ライクを集計するSQL
+$sql = 'SELECT * FROM writeLong LEFT OUTER JOIN (SELECT title_id, COUNT(id) AS like_count FROM like_table GROUP BY title_id) AS result_table ON writeLong.id = result_table.title_id ORDER bY createdLong DESC';
+
 $stmt = $pdo->prepare($sql);
+
 
 try {
   $status = $stmt->execute();
@@ -39,19 +45,30 @@ try {
   exit();
 }
 
+$user_id = $_SESSION['user_id'];
+
+
 $output = "";
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 foreach ($result as $record) {
   
 
-  $output .="
-       <div>
-       <a href='detail.php?id={$record["id"]}'>{$record["titleLong"]}</a>
+  $output .=
+  "
+  <a  href='detail.php?id={$record["id"]}'> 
+  <div class='obi_box'>
+     
+    <p class='obi_box_text'>{$record["titleLong"]}</p>
+       <img src='./Images/{$record["file_name"]}'/>
+       <a class='like_icon' href='like_create.php?user_id={$user_id}&title_id={$record["id"]}'>♡{$record["like_count"]}</a>
+       
        </div>
-
+       </a>
   ";
   
 }
+
+
 
 ?>
 
@@ -79,7 +96,7 @@ foreach ($result as $record) {
     <div class="modal">      
       <div id="">
         <h2>感想記入</h2>
-        <form action="create.php" method="POST">
+        <form action="create.php" method="POST" enctype="multipart/form-data">
           <div>
             <input type="text" name="titleLong" placeholder="タイトル">
           </div>
@@ -88,6 +105,10 @@ foreach ($result as $record) {
           </div>
           <div>
               <textarea id="textareaLong" type="text" name="textLong" placeholder="本文"></textarea>
+          </div>
+          <div>
+                  <input type="file" name="file" accept="image/*">
+
           </div>
           <div>
             <button>送信</button>
@@ -108,21 +129,17 @@ foreach ($result as $record) {
     <p>ー２０２４ー</p>
   </footer>
 <script>
-  // ゲストユーザー時は書くことができない処理
-const userName = <?=json_encode($_SESSION["username"])?>;
-if(userName==="GUEST"){
-      $('#showLong').on('click', function () {
-        $(this).prop('disabled', true);
-      });
-}else{
+
+
 // ボタンを押した時に記入ボタンを表示
-    $('#showLong').click(function() {
+      $('#showLong').click(function() {
         $(".modal-wrapper").show();
     });
     $('#close').click(function() {
         $(".modal-wrapper").hide();
     })
-};
+
+
 
 
 
